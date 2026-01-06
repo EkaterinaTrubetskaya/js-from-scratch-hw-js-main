@@ -10,12 +10,12 @@
 */
 
 function truncate(str, maxLength) {
-  if (str <= maxLength) {
+  if (str.length <= maxLength) {
     return str
   } else {
     return str.slice(0, maxLength) + '...'
   }
 }
 
-truncate("Вот, что мне действительно нравится в этом", 20)
+truncate("Короткая строка", 20)
 
