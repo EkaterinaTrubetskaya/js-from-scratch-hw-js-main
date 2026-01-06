@@ -17,3 +17,47 @@ const WEB_TECH_IMAGES = [
   'https://production-it-incubator.s3.eu-central-1.amazonaws.com/file-manager/Image/c8a1f4a6-1337-4899-bdfd-a8c9c7bb806a_css-magic-logo.jpg',
   'https://production-it-incubator.s3.eu-central-1.amazonaws.com/file-manager/Image/784380b9-6937-42a6-bdfe-869835820234_html-magic-logo.jpg',
 ]
+
+// Получаем элементы страницы
+const imageElement = document.getElementById('web-tech-image');
+const prevButton = document.getElementById('prev-button');
+const nextButton = document.getElementById('next-button');
+
+// Индекс текущего изображения (начинаем с 0 - первое изображение)
+let currentImageIndex = 0;
+
+// Функция для обновления изображения
+function updateImage() {
+  imageElement.src = WEB_TECH_IMAGES[currentImageIndex];
+}
+
+// Обработчик для кнопки "prev" (предыдущее изображение)
+prevButton.addEventListener('click', () => {
+  // Уменьшаем индекс на 1
+  currentImageIndex--;
+  
+  // Если индекс стал меньше 0, переходим к последнему изображению (циклическое переключение)
+  if (currentImageIndex < 0) {
+    currentImageIndex = WEB_TECH_IMAGES.length - 1;
+  }
+  
+  // Обновляем изображение
+  updateImage();
+});
+
+// Обработчик для кнопки "next" (следующее изображение)
+nextButton.addEventListener('click', () => {
+  // Увеличиваем индекс на 1
+  currentImageIndex++;
+  
+  // Если индекс стал больше или равен длине массива, переходим к первому изображению (циклическое переключение)
+  if (currentImageIndex >= WEB_TECH_IMAGES.length) {
+    currentImageIndex = 0;
+  }
+  
+  // Обновляем изображение
+  updateImage();
+});
+
+// Устанавливаем начальное изображение (первое из массива)
+updateImage();
